@@ -51,5 +51,8 @@ jobs:
         git config --global user.email "machlevi2021@gmail.com"
         git add .
         # Force the build to succeed, even if no files were changed
-        git commit -m 'Update generated files' || true
+        git commit -m 'Update generated files with the latest languages.
+        
+        
+        Co-authored-by: Levy Omolo <cotechlevy@gmail.com>' || true
         git push
