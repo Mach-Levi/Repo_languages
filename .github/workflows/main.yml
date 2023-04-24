@@ -55,6 +55,5 @@ jobs:
         
         
         Co-authored-by: Levy Omolo <cotechlevy@gmail.com>
-        
         Co-authored-by: Mach-Levi <machlevi2021@gmail.com>' || true
         git push
