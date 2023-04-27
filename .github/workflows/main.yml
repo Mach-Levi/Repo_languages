@@ -16,7 +16,7 @@ jobs:
 
     steps:
     # Check out repository under $GITHUB_WORKSPACE, so the job can access it
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         ref: develop
 
@@ -44,8 +44,8 @@ jobs:
         EXCLUDED_LANGS: ${{ secrets.EXCLUDED_LANGS }}
         EXCLUDE_FORKED_REPOS: true
 
-    # Commit changes to the develop branch
-    - name: Commit changes to develop
+    # Commit changes to the mach branch
+    - name: Commit changes to mach
       run: |
         git config --global user.name "Mach-Levi"
         git config --global user.email "machlevi2021@gmail.com"
