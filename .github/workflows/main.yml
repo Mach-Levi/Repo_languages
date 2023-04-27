@@ -53,14 +53,27 @@ jobs:
         git commit -m 'Update files with the latest languages.
         
         
+        
         Co-authored-by: Mach-Levi <machlevi2021@gmail.com>
+        Co-authored-by: MihalczGabor <gabor.mihalcz@gabinnyogroup.ws>
         Co-authored-by: omololevy <cotechlevy@gmail.com>'
         git push origin main
 
     # Merge develop branch into master branch
-    - name: Merge to master
-      run: |
-        git fetch origin
-        git checkout master
-        git merge main --no-ff -m "Merge develop branch into master"
-        git push origin master
+#     - name: Merge to master
+#       run: |
+#         git fetch origin
+#         git checkout master
+#         git merge main --no-ff -m "Merge main branch into master"
+#         git push origin master
+        
+    # Create pull request for merging develop branch into master branch
+    - name: Create pull request
+      uses: Mach-Levi/create-pull-request@v3
+      with:
+        title: 'Merge main into master'
+        commit-message: 'Merge main branch into master'
+        branch: master
+        body: 'This pull request by a GitHub action.'
+        labels: 'automated'
+        token: ${{ secrets.GITHUB_TOKEN }}
