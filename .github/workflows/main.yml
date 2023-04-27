@@ -1,8 +1,8 @@
-name: Generate Stats Images
+name: Generate Stats Images and Merge to Master
 
 on:
   push:
-    branches: [ develop ]
+    branches: [ mach ]
   schedule:
     - cron: "*/25 * * * *"
   workflow_dispatch:
@@ -17,14 +17,14 @@ jobs:
     steps:
     # Check out repository under $GITHUB_WORKSPACE, so the job can access it
     - uses: actions/checkout@v3
+      with:
+        ref: develop
 
     # Run using Python 3.8 for consistency and aiohttp
     - name: Set up Python 3.8
       uses: actions/setup-python@v4
       with:
         python-version: '3.8'
-        architecture: 'x64'
-        cache: 'pip'
 
     # Install dependencies with `pip`
     - name: Install requirements
@@ -44,17 +44,23 @@ jobs:
         EXCLUDED_LANGS: ${{ secrets.EXCLUDED_LANGS }}
         EXCLUDE_FORKED_REPOS: true
 
-    # Commit all changed files to the repository
-    - name: Commit to the repo
+    # Commit changes to the mach branch
+    - name: Commit changes to mach
       run: |
         git config --global user.name "Mach-Levi"
         git config --global user.email "machlevi2021@gmail.com"
         git add .
-        # Force the build to succeed, even if no files were changed
-        git commit -m 'Update generated files with the latest languages.
+        git commit -m 'Update files with the latest languages.
         
         
-        Co-authored-by: Levy Omolo <cotechlevy@gmail.com>
-        
-        Co-authored-by: Mach-Levi <machlevi2021@gmail.com>' || true
-        git push
+        Co-authored-by: Mach-Levi <machlevi2021@gmail.com>
+        Co-authored-by: omololevy <cotechlevy@gmail.com>'
+        git push origin mach
+
+    # Merge develop branch into master branch
+    - name: Merge to master
+      run: |
+        git fetch origin
+        git checkout master
+        git merge develop --no-ff -m "Merge develop branch into master"
+        git push origin master
