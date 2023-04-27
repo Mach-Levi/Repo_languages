@@ -54,9 +54,7 @@ jobs:
         
         
         
-        Co-authored-by: Mach-Levi <machlevi2021@gmail.com>
-        Co-authored-by: MihalczGabor <gabor.mihalcz@gabinnyogroup.ws>
-        Co-authored-by: omololevy <cotechlevy@gmail.com>'
+        Co-authored-by: Mach-Levi <machlevi2021@gmail.com>'
         git push origin main
 
     # Merge develop branch into master branch
